@@ -93,4 +93,3 @@ media/
 logs/
 .idea/
 ./static
-migrations/
