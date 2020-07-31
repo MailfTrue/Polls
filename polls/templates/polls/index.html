@@ -1,0 +1,27 @@
+{% extends 'polls/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/index.css' %}" />
+{% endblock %}
+
+{% block content %}
+    {% if latest_question_list %}
+            <div class="row">
+            {% for question in latest_question_list %}
+                <div class="col-md-4">
+                    <div class="card card-question">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ question.question_text }}</h5>
+                            <a href="{% url 'polls:detail' question.id %}" class="btn btn-primary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </ul>
+    {% else %}
+        <p>Нет доступных голосований</p>
+    {% endif %}
+{% endblock %}
