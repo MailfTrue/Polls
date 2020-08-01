@@ -1,9 +1,16 @@
 from django.db import models
+from django.utils import timezone
+
+import datetime
 
 
 class Question(models.Model):
     question_text = models.CharField('Текст вопроса', max_length=200)
     pub_date = models.DateTimeField('Дата публикации')
+
+    def was_published_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
     def __str__(self):
         return self.question_text
